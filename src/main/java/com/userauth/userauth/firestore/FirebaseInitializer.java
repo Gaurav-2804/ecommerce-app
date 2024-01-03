@@ -24,7 +24,7 @@ public class FirebaseInitializer {
         if (credentialsPath != null) {
             serviceAccount = new FileInputStream(credentialsPath);
         } else {
-            serviceAccount = new FileInputStream("./service_account_pk.json");
+            serviceAccount = new FileInputStream("src/main/resources/service_account_pk.json");
         }
 
         GoogleCredentials credentials = GoogleCredentials.fromStream(serviceAccount);   
