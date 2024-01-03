@@ -10,6 +10,14 @@ import com.google.firebase.cloud.FirestoreClient;
 public class FirebaseConfig {
     @Bean
     public Firestore getDb() {
+        FileInputStream serviceAccount = new FileInputStream("path/to/service_account_pk.json");
+
+        GoogleCredentials credentials = GoogleCredentials.fromStream(serviceAccount);   
+        FirebaseOptions options = FirebaseOptions
+            .builder()
+            .setCredentials(credentials)
+            .setStorageBucket("e-com-services-f8918.appspot.com")
+            .build();
         return FirestoreClient.getFirestore();
     }
 }
