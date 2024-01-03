@@ -16,7 +16,16 @@ public class FirebaseInitializer {
     
     @PostConstruct
     public void initialize() throws IOException {
-        FileInputStream serviceAccount = new FileInputStream("path/to/service_account_pk.json");
+        String credentialsPath = System.getenv("GOOGLE_APPLICATION_CREDENTIALS");
+
+        // FileInputStream serviceAccount = new FileInputStream("./service_account_pk.json");
+        FileInputStream serviceAccount;
+
+        if (credentialsPath != null) {
+            serviceAccount = new FileInputStream(credentialsPath);
+        } else {
+            serviceAccount = new FileInputStream("./service_account_pk.json");
+        }
 
         GoogleCredentials credentials = GoogleCredentials.fromStream(serviceAccount);   
         FirebaseOptions options = FirebaseOptions
