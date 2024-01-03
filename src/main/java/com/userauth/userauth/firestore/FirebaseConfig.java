@@ -1,5 +1,10 @@
 package com.userauth.userauth.firestore;
 
+import java.io.FileInputStream;
+import com.google.auth.oauth2.GoogleCredentials;
+import com.google.firebase.FirebaseOptions;
+import com.google.firebase.FirebaseApp;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -9,7 +14,7 @@ import com.google.firebase.cloud.FirestoreClient;
 @Configuration
 public class FirebaseConfig {
     @Bean
-    public Firestore getDb() {
+    public Firestore getDb() throws IOException {
         FileInputStream serviceAccount = new FileInputStream("path/to/service_account_pk.json");
 
         GoogleCredentials credentials = GoogleCredentials.fromStream(serviceAccount);   
