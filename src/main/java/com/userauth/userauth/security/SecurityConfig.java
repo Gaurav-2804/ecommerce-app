@@ -38,6 +38,7 @@ public class SecurityConfig {
                 .authorizeRequests()
                 .antMatchers("/h2/**").permitAll()
                 .antMatchers("/client/**").permitAll()
+                .antMatchers("https://ecommerce-backend-g3tw.onrender.com/**").permitAll()
                 .antMatchers(HttpMethod.POST, SecurityConstants.REGISTER_PATH).permitAll()
                 .anyRequest().authenticated()
                 .and()
