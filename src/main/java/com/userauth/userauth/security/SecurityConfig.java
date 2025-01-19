@@ -57,7 +57,8 @@ public class SecurityConfig {
         configuration.setAllowCredentials(true);
         configuration.setAllowedOrigins(Arrays.asList(
                 "http://localhost:3000",
-                "https://ecommerce-backend-g3tw.onrender.com"
+                "https://ecommerce-backend-g3tw.onrender.com",
+                "https://e-commerce-ui-hy2y-8rg1e5onw-gaurav-2804s-projects.vercel.app"
         ));
 //        configuration.setAllowedOrigins(Arrays.asList("https://ecommerce-backend-g3tw.onrender.com"));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
