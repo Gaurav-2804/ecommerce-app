@@ -93,7 +93,7 @@ public class UserController {
         return new ResponseEntity<>(productData, HttpStatus.OK);
     }
 
-    @GetMapping("/api//client/getDetails")
+    @GetMapping("/api/client/getDetails")
     public ResponseEntity<List<UserProducts>> getProducts() {
         List<UserProducts> products = productDetailsService.getAllProducts();
         return new ResponseEntity<>(products, HttpStatus.OK);
