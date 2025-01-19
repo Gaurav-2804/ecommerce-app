@@ -1,6 +1,5 @@
 com\userauth\userauth\security\SecurityConfig.class
 com\userauth\userauth\security\filter\ExceptionHandlerFilter.class
-com\userauth\userauth\firestore\FirebaseInitializer.class
 com\userauth\userauth\entity\ProductData.class
 com\userauth\userauth\entity\ProfileDetails.class
 com\userauth\userauth\firestore\FirebaseConfig.class

@@ -38,25 +38,25 @@ public class UserController {
     ProductDetailsService productDetailsService;
     ProductDataService productDataService;
 
-    @GetMapping("/user/{id}")
+    @GetMapping("/api/user/{id}")
     public ResponseEntity<String> findById(@PathVariable Long id) {
         return new ResponseEntity<>(userService.getUser(id).getUsername(), HttpStatus.OK);
     }
 
-    @PostMapping("/user/register")
+    @PostMapping("/api/user/register")
     public ResponseEntity<HttpStatus> createUser(@Valid @RequestBody User user) {
         userService.saveUser(user);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @PostMapping("/user/get")
+    @PostMapping("/api/user/get")
     public ResponseEntity<User> findByUsername(@RequestBody Map<String, String> userPayload) {
         String username = userPayload.get("username");
         User tempUser = userService.getUserFromDatabase(username);
         return new ResponseEntity<User>(tempUser, HttpStatus.OK);
     }
 
-    @PostMapping("/user/insertDetails")
+    @PostMapping("/api/user/insertDetails")
     public ResponseEntity<HttpStatus> createProduct(@RequestParam("files") MultipartFile[] files,
             @RequestPart("productData") @JsonDeserialize(as = ProductData.class) ProductData productData) {
         ProductRequest productRequest = new ProductRequest();
@@ -68,51 +68,51 @@ public class UserController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PostMapping("user/insertProfileDetails")
+    @PostMapping("/api/user/insertProfileDetails")
     public ResponseEntity<HttpStatus> saveUserProfile(@RequestBody ProfileDetails profileDetails) {
         userService.saveUserProfile(profileDetails);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PostMapping("user/getProfile")
+    @PostMapping("/api/user/getProfile")
     public ResponseEntity<ProfileDetails> getUserProfile(@RequestBody Map<String, String> userPayload) {
         String userId = userPayload.get("userId");
         ProfileDetails profileDetails = userService.getUserProfile(userId);
         return new ResponseEntity<>(profileDetails, HttpStatus.OK);
     }
 
-    @GetMapping("user/product/{uuid}")
+    @GetMapping("/api/user/product/{uuid}")
     public ResponseEntity<ProductData> getUserProduct(@PathVariable String uuid) {
         ProductData productData = productDataService.getProductData(uuid);
         return new ResponseEntity<>(productData, HttpStatus.OK);
     }
 
-    @GetMapping("client/product/{uuid}")
+    @GetMapping("/api/client/product/{uuid}")
     public ResponseEntity<ProductData> getProduct(@PathVariable String uuid) {
         ProductData productData = productDataService.getProductData(uuid);
         return new ResponseEntity<>(productData, HttpStatus.OK);
     }
 
-    @GetMapping("/client/getDetails")
+    @GetMapping("/api//client/getDetails")
     public ResponseEntity<List<UserProducts>> getProducts() {
         List<UserProducts> products = productDetailsService.getAllProducts();
         return new ResponseEntity<>(products, HttpStatus.OK);
     }
 
-    @GetMapping("/client/getCategories")
+    @GetMapping("/api/client/getCategories")
     public ResponseEntity<List<Category>> getCategory() {
         List<Category> categories = productDetailsService.getCategories();
         return new ResponseEntity<>(categories, HttpStatus.OK);
     }
 
-    @PostMapping("/user/getAllProducts")
+    @PostMapping("/api/user/getAllProducts")
     public ResponseEntity<List<UserProducts>> getUserProducts(@RequestBody Map<String, String> userPayload) {
         String userId = userPayload.get("userId");
         List<UserProducts> userProducts = userService.getAllUserProducts(userId);
         return new ResponseEntity<>(userProducts, HttpStatus.OK);
     }
 
-    @GetMapping("/client/getCarousels")
+    @GetMapping("/api/client/getCarousels")
     public ResponseEntity<List<String>> getCarouselImages() {
         List<String> carouselImages = productDataService.getCarouselImages();
         return new ResponseEntity<>(carouselImages, HttpStatus.OK);

@@ -37,7 +37,7 @@ public class SecurityConfig {
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/h2/**").permitAll()
-                .antMatchers("/client/**").permitAll()
+                .antMatchers("/api/client/**").permitAll()
                 .antMatchers("https://ecommerce-backend-g3tw.onrender.com/**").permitAll()
                 .antMatchers(HttpMethod.POST, SecurityConstants.REGISTER_PATH).permitAll()
                 .anyRequest().authenticated()
@@ -55,8 +55,11 @@ public class SecurityConfig {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.applyPermitDefaultValues();
         configuration.setAllowCredentials(true);
-        // configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000"));
-        configuration.setAllowedOrigins(Arrays.asList("https://ecommerce-backend-g3tw.onrender.com"));
+        configuration.setAllowedOrigins(Arrays.asList(
+                "http://localhost:3000",
+                "https://ecommerce-backend-g3tw.onrender.com"
+        ));
+//        configuration.setAllowedOrigins(Arrays.asList("https://ecommerce-backend-g3tw.onrender.com"));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type"));
         configuration.setExposedHeaders(Arrays.asList("Authorization")); // Expose the Authorization header
